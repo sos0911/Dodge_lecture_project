@@ -33,5 +33,30 @@ public class GameManager : MonoBehaviour
             // 초단위로 끊어서 표현
             timetext.text = "Time : " + (int)survivetime;
         }
+        else
+        {
+            // 게임오버가 된 상태에서 r을 누르면 재시작
+            if (Input.GetKeyDown(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    public void EndGame()
+    {
+        isGameover = true;
+        // gameover text 활성화
+        // active시킨 다음 text를 갱신함..
+        gameovertext.SetActive(true);
+
+        float besttime = PlayerPrefs.GetFloat("BestTime");
+
+        if (survivetime > besttime)
+        {
+            // 기록갱신
+            besttime = survivetime;
+            PlayerPrefs.SetFloat("BestTime", besttime);
+        }
+
+        recordtext.text = "Best Time : " + (int)besttime;
     }
 }

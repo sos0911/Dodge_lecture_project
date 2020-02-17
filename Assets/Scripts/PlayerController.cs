@@ -36,5 +36,9 @@ public class PlayerController : MonoBehaviour
         // player 비활성화
         // destroy와는 다르다.
         gameObject.SetActive(false);
+
+        // gamemanager에 singleton 방식을 아직 적용x
+        GameManager gamemanager = FindObjectOfType<GameManager>();
+        gamemanager.EndGame();
     }
 }

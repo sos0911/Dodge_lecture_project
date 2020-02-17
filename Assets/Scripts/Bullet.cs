@@ -15,9 +15,6 @@ public class Bullet : MonoBehaviour
         // 속도만 rigidbody에서 설정해주면 자기가 알아서감
         // 이건 처음알았네..
         bulletrigidbody.velocity = transform.forward * speed;
-
-        // 일정 시간 뒤 파괴됨
-        Destroy(gameObject, 3f);
     }
 
     // Update is called once per frame
@@ -38,5 +35,8 @@ public class Bullet : MonoBehaviour
             if (playercontroller != null)
                 playercontroller.Die();
         }
+        // 벽에 닿으면 소멸
+        else if (other.tag == "Wall")
+            Destroy(gameObject);
     }
 }
